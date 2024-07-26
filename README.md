@@ -5,15 +5,20 @@
 
 ## whats new
 
+Enable target features whenever these env variables are present
+
 ```yaml
   environment:
     - SOCAT=SOCAT
     - TUNED=TUNED
+    - LESSLOG=LESSLOG
 ```
 
-add socat to enable remote-debug-port on 13011
+add SOCAT to enable remote-debug-port on 13011
 
-add tuned to add --user-agent and mute audio to save system resources
+add TUNED to add --user-agent and mute audio to save system resources
+
+add LESSLOG to suppress chrome logs
 
 fix `$CHORME_CLI` 
 

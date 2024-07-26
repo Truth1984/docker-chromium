@@ -3,6 +3,7 @@
 BIN=/usr/bin/chromium
 
 Chrome_Default_Cli=" --ignore-gpu-blocklist --no-first-run --password-store=basic --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT' --start-maximized --user-data-dir"
+Log_Op=''
 
 # Cleanup
 if ! pgrep chromium > /dev/null;then
@@ -13,6 +14,11 @@ if $(u has -e SOCAT); then
     u _ED socat found, enabling debug port 
     socat tcp-listen:13011,reuseaddr,fork tcp:localhost:9222 &
     Chrome_Default_Cli+=" --remote-debugging-port=9222 --remote-debugging-address=0.0.0.0"
+fi;
+
+if $(u has -e LESSLOG); then
+    u _ED suppressing chromium logs
+    Log_Op='> /dev/null 2>&1'
 fi;
 
 if ! grep -q 'Seccomp:.0' /proc/1/status; then
@@ -27,11 +33,11 @@ fi;
 
 if $(u has -e CHROME_CLI_PLAIN); then
     u _ED using plain cli as {$CHROME_CLI_PLAIN}
-    eval "chromium $CHROME_CLI_PLAIN";
+    eval "$BIN $CHROME_CLI_PLAIN $Log_Op";
 elif $(u has -e CHROME_CLI); then
     u _ED using provided cli as {$CHROME_CLI} default {$Chrome_Default_Cli}
-    eval "chromium $Chrome_Default_Cli $CHROME_CLI";
+    eval "$BIN $Chrome_Default_Cli $CHROME_CLI $Log_Op";
 else
     u _ED using default chromium cli as {$Chrome_Default_Cli};
-    eval "chromium $Chrome_Default_Cli"
+    eval "$BIN $Chrome_Default_Cli $Log_Op"
 fi;
