@@ -1,2 +1,14 @@
 #!/bin/bash
-wrapped-chromium ${CHROME_CLI}
+
+if $(u has -e SOCAT); then 
+    socat tcp-listen:13011,reuseaddr,fork tcp:localhost:9222 & 
+fi;
+
+if $(u has -e CHROME_CLI); then 
+    u _ED using provided cli as {$CHROME_CLI}
+    wrapped-chromium "$CHROME_CLI";
+else 
+    C_CLI_D="--remote-debugging-port=9222 --remote-debugging-address=0.0.0.0 --start-maximized --user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36' --autoplay-policy=no-user-gesture-required --disable-software-rasterizer --mute-audio --disable-audio-input --disable-notifications --disable-smooth-scrolling --disable-speech-api --disable-overscroll-edge-effect --disable-pull-to-refresh-effect --use-fake-device-for-media-stream --auto-accept-camera-and-microphone-capture"
+    u _ED using default chromium cli as {$C_CLI_D};
+    wrapped-chromium "$C_CLI_D"
+fi;

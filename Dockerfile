@@ -1,11 +1,5 @@
 FROM ghcr.io/linuxserver/baseimage-kasmvnc:debianbookworm
 
-# set version label
-ARG BUILD_DATE
-ARG VERSION
-LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="thelamer"
-
 # title
 ENV TITLE=Chromium
 
@@ -14,13 +8,12 @@ RUN \
   curl -o \
     /kclient/public/icon.png \
     https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/chromium-logo.png && \
-  echo "**** install packages ****" && \
-  apt-get update && \
-  apt-get install -y --no-install-recommends \
-    chromium \
-    chromium-l10n && \
-  echo "**** cleanup ****" && \
-  apt-get autoclean && \
+
+RUN ssurl="https://raw.gitmirror.com/Truth1984/shell-simple/main/util.sh"; if command -v curl > /dev/null 2>&1; then curl -sSL $ssurl -o util.sh; elif command -v wget > /dev/null 2>&1; then wget -O util.sh $ssurl; else echo "Neither curl nor wget found"; exit 1; fi; chmod 777 util.sh && ./util.sh setup
+RUN u setupEX -c
+RUN u install socat fonts-noto-cjk chromium chromium-l10n
+
+RUN apt-get autoclean && \
   rm -rf \
     /config/.cache \
     /var/lib/apt/lists/* \
