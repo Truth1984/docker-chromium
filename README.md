@@ -6,8 +6,9 @@
 ## whats new
 
 ```yaml
-  - SOCAT=SOCAT
-  - TUNED=TUNED
+  environment:
+    - SOCAT=SOCAT
+    - TUNED=TUNED
 ```
 
 add socat to enable remote-debug-port on 13011
