@@ -14,13 +14,13 @@ Enable target features whenever these env variables are present
     - LESSLOG=LESSLOG
 ```
 
-add SOCAT to enable remote-debug-port on 13011
+add SOCAT to enable remote debugging on 0.0.0.0:13011
 
 add TUNED to add --user-agent and mute audio to save system resources
 
 add LESSLOG to suppress chrome logs
 
-fix `$CHORME_CLI` 
+fix `$CHROME_CLI`, now can pass '--var="strings"' 
 
 use `$CHROME_CLI_PLAIN` for no additional args 
 
