@@ -3,6 +3,21 @@
 
 [![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)](https://linuxserver.io)
 
+## whats new
+
+```yaml
+  - SOCAT=SOCAT
+  - TUNED=TUNED
+```
+
+add socat to enable remote-debug-port on 13011
+
+add tuned to add --user-agent and mute audio to save system resources
+
+fix `$CHORME_CLI` 
+
+use `$CHROME_CLI_PLAIN` for no additional args 
+
 ## Supported Architectures
 
 We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://distribution.github.io/distribution/spec/manifest-v2-2/#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).

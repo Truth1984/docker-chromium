@@ -2,30 +2,36 @@
 
 BIN=/usr/bin/chromium
 
+Chrome_Default_Cli=" --ignore-gpu-blocklist --no-first-run --password-store=basic --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT' --start-maximized --user-data-dir"
+
 # Cleanup
 if ! pgrep chromium > /dev/null;then
   rm -f $HOME/.config/chromium/Singleton*
 fi
 
-# Run normally on privved containers or modified un non priv
-if grep -q 'Seccomp:.0' /proc/1/status; then
-  ${BIN} \
-  --ignore-gpu-blocklist \
-  --no-first-run \
-  --password-store=basic \
-  --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT' \
-  --start-maximized \
-  --user-data-dir \
-   "$@" 
+if $(u has -e SOCAT); then
+    u _ED socat found, enabling debug port 
+    socat tcp-listen:13011,reuseaddr,fork tcp:localhost:9222 &
+    Chrome_Default_Cli+=" --remote-debugging-port=9222 --remote-debugging-address=0.0.0.0"
+fi;
+
+if ! grep -q 'Seccomp:.0' /proc/1/status; then
+    u _ED enable no-sandbox args
+    Chrome_Default_Cli+=" --no-sandbox --test-type"
+fi;
+
+if $(u has -e TUNED); then
+    u _ED tuned found, adding more args to default cli
+    Chrome_Default_Cli+=" --user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36' --autoplay-policy=no-user-gesture-required --disable-software-rasterizer --mute-audio --disable-audio-input --disable-notifications --disable-smooth-scrolling --disable-speech-api --disable-overscroll-edge-effect --disable-pull-to-refresh-effect --use-fake-device-for-media-stream --auto-accept-camera-and-microphone-capture"
+fi;
+
+if $(u has -e CHROME_CLI_PLAIN); then
+    u _ED using plain cli as {$CHROME_CLI_PLAIN}
+    eval "chromium $CHROME_CLI_PLAIN";
+elif $(u has -e CHROME_CLI); then
+    u _ED using provided cli as {$CHROME_CLI} default {$Chrome_Default_Cli}
+    eval "chromium $Chrome_Default_Cli $CHROME_CLI";
 else
-  ${BIN} \
-  --ignore-gpu-blocklist \
-  --no-first-run \
-  --no-sandbox \
-  --password-store=basic \
-  --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT' \
-  --start-maximized \
-  --test-type \
-  --user-data-dir \
-   "$@" 
-fi
+    u _ED using default chromium cli as {$Chrome_Default_Cli};
+    eval "chromium $Chrome_Default_Cli"
+fi;
