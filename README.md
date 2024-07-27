@@ -21,7 +21,7 @@ add TUNED to add --user-agent and mute audio to save system resources
 
 add LESSLOG to suppress chrome logs
 
-add UA as useragent option: "safari|firefox|chrome|mobile"
+add UA as useragent option: "safari|firefox|chrome|ipad|ioschrome"
 
 fix `$CHROME_CLI`, now can pass '--var="strings"'
 
