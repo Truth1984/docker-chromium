@@ -8,10 +8,11 @@
 Enable target features whenever these env variables are present
 
 ```yaml
-  environment:
-    - SOCAT=SOCAT
-    - TUNED=TUNED
-    - LESSLOG=LESSLOG
+environment:
+  - SOCAT=SOCAT
+  - TUNED=TUNED
+  - LESSLOG=LESSLOG
+  - UA=mobile
 ```
 
 add SOCAT to enable remote debugging on 0.0.0.0:13011
@@ -20,9 +21,11 @@ add TUNED to add --user-agent and mute audio to save system resources
 
 add LESSLOG to suppress chrome logs
 
-fix `$CHROME_CLI`, now can pass '--var="strings"' 
+add UA as useragent option: "safari|firefox|chrome|mobile"
 
-use `$CHROME_CLI_PLAIN` for no additional args 
+fix `$CHROME_CLI`, now can pass '--var="strings"'
+
+use `$CHROME_CLI_PLAIN` for no additional args
 
 ## Supported Architectures
 
