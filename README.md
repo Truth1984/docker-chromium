@@ -12,7 +12,7 @@ environment:
   - SOCAT=SOCAT
   - TUNED=TUNED
   - LESSLOG=LESSLOG
-  - UA=mobile
+  - UA=safari
 ```
 
 add SOCAT to enable remote debugging on 0.0.0.0:13011
