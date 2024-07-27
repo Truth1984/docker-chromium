@@ -28,7 +28,7 @@ fi;
 
 if $(u has -e TUNED); then
     u _ED tuned found, adding more args to default cli
-    Chrome_Default_Cli+=" --autoplay-policy=no-user-gesture-required --disable-software-rasterizer --mute-audio --disable-audio-input --disable-notifications --disable-smooth-scrolling --disable-speech-api --disable-overscroll-edge-effect --disable-pull-to-refresh-effect --use-fake-device-for-media-stream --auto-accept-camera-and-microphone-capture"
+    Chrome_Default_Cli+=" --disable-blink-features=AutomationControlled --autoplay-policy=no-user-gesture-required --disable-software-rasterizer --mute-audio --disable-audio-input --disable-smooth-scrolling --disable-speech-api --disable-overscroll-edge-effect --disable-pull-to-refresh-effect --use-fake-device-for-media-stream --auto-accept-camera-and-microphone-capture"
 fi;
 
 # $UA user-agent
@@ -37,16 +37,16 @@ case "${UA,,}" in
         Chrome_Default_Cli+=" --user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2; rv:120.0) Gecko/20100101 Firefox/120.0'"
         ;;
     "safari")
-        Chrome_Default_Cli+=" --apple --user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 14.5) AppleWebKit/618.9 (KHTML, like Gecko) Version/17.4 Safari/618.9'"
+        Chrome_Default_Cli+=" --user-agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 14.5) AppleWebKit/618.9 (KHTML, like Gecko) Version/17.4 Safari/618.9'"
         ;;
     "chrome")
         Chrome_Default_Cli+=" --user-agent='Mozilla/5.0 (Windows NT 6.4) AppleWebKit/537.36.0 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36.0'"
         ;;
     "ipad")
-        Chrome_Default_Cli+=" --apple --use-mobile-user-agent --user-agent='Mozilla/5.0 (iPad; CPU OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1'"
+        Chrome_Default_Cli+=" --use-mobile-user-agent --user-agent='Mozilla/5.0 (iPad; CPU OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1'"
         ;;
     "ioschrome")
-        Chrome_Default_Cli+=" --apple --use-mobile-user-agent --user-agent='Mozilla/5.0 (iPad; CPU OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/127.0.6533.56 Mobile/15E148 Safari/604.1'"
+        Chrome_Default_Cli+=" --use-mobile-user-agent --user-agent='Mozilla/5.0 (iPad; CPU OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/127.0.6533.56 Mobile/15E148 Safari/604.1'"
 	;;
     *)
         ;;
