@@ -28,7 +28,7 @@ fi;
 
 if $(u has -e TUNED); then
     u _ED tuned found, adding more args to default cli
-    Chrome_Default_Cli+=" --disable-blink-features=AutomationControlled --autoplay-policy=no-user-gesture-required --disable-software-rasterizer --mute-audio --disable-audio-input --disable-smooth-scrolling --disable-speech-api --disable-overscroll-edge-effect --disable-pull-to-refresh-effect --use-fake-device-for-media-stream --auto-accept-camera-and-microphone-capture"
+    Chrome_Default_Cli+=" --autoplay-policy=no-user-gesture-required --disable-software-rasterizer --mute-audio --disable-audio-input --disable-smooth-scrolling --disable-speech-api --disable-overscroll-edge-effect --disable-pull-to-refresh-effect --use-fake-device-for-media-stream --auto-accept-camera-and-microphone-capture --disable-notifications"
 fi;
 
 # $UA user-agent
