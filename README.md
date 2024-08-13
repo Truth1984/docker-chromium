@@ -17,7 +17,7 @@ environment:
 
 add SOCAT to enable remote debugging on 0.0.0.0:13011
 
-add TUNED to add --user-agent and mute audio to save system resources
+add TUNED to mute audio & remove notifications to save system resources
 
 add LESSLOG to suppress chrome logs
 
@@ -27,19 +27,19 @@ fix `$CHROME_CLI`, now can pass '--var="strings"'
 
 use `$CHROME_CLI_PLAIN` for no additional args
 
-## Supported Architectures
+## versions
 
-We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://distribution.github.io/distribution/spec/manifest-v2-2/#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
+u2: 7.6.3
 
-Simply pulling `lscr.io/linuxserver/chromium:latest` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Manifest v2 enabled:
 
-The architectures supported by this image are:
+chromium: chromium=121.0.6167.139-1~deb12u1
 
-| Architecture | Available | Tag                     |
-| :----------: | :-------: | ----------------------- |
-|    x86-64    |    ✅     | amd64-\<version tag\>   |
-|    arm64     |    ✅     | arm64v8-\<version tag\> |
-|    armhf     |    ❌     |                         |
+chromium-l10n: chromium-l10n=121.0.6167.139-1~deb12u1
+
+## forked from
+
+`lscr.io/linuxserver/chromium:latest`
 
 ## Application Setup
 
