@@ -37,6 +37,10 @@ chromium: chromium=121.0.6167.139-1~deb12u1
 
 chromium-l10n: chromium-l10n=121.0.6167.139-1~deb12u1
 
+## pull
+
+`docker pull truth1984/chromium:v2`
+
 ## forked from
 
 `lscr.io/linuxserver/chromium:latest`
