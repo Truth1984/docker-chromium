@@ -21,7 +21,7 @@ if $(u has -e LESSLOG); then
     Log_Op='> /dev/null 2>&1'
 fi;
 
-if  ! grep -q 'Seccomp:.0' /proc/1/status || $(u string -e "$PUID" "0")  || $(u string -e "PGID" "0"); then
+if  ! grep -q 'Seccomp:.0' /proc/1/status || $(u string -e "$PUID" "0")  || $(u string -e "$PGID" "0"); then
     u _ED enable no-sandbox args
     Chrome_Default_Cli+=" --no-sandbox --test-type"
 fi;
