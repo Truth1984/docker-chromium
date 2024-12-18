@@ -15,7 +15,7 @@ environment:
   - UA=safari
 ```
 
-add SOCAT to enable remote debugging on 0.0.0.0:13011
+add SOCAT to enable remote debugging address on 0.0.0.0:13011.
 
 add TUNED to mute audio & remove notifications to save system resources
 
@@ -25,21 +25,27 @@ add UA as useragent option: "safari|firefox|chrome|ipad|ioschrome"
 
 fix `$CHROME_CLI`, now can pass '--var="strings"'
 
-use `$CHROME_CLI_PLAIN` for no additional args
+`$CHROME_CLI_PLAIN`: all other $CLI commands will be ignored, and only this command will be executed
+
+add internationalization with font support (fonts-noto-cjk)
 
 ## versions
 
-u2: 7.6.3
+u2: 7.12.3, setup: 1.5.0
 
-Manifest v2 enabled:
+Manifest v2 enabled & stable-security version:
 
-chromium: chromium=121.0.6167.139-1~deb12u1
+chromium-common: chromium-common=128.0.6613.84-1~deb12u1
 
-chromium-l10n: chromium-l10n=121.0.6167.139-1~deb12u1
+chromium: chromium=128.0.6613.84-1~deb12u1
+
+chromium-l10n: chromium-l10n=128.0.6613.84-1~deb12u1
 
 ## pull
 
-`docker pull truth1984/chromium:v2`
+`docker pull truth1984/chromium:v128` (latest, 128.0.6613.84-1~deb12u1)
+
+`docker pull truth1984/chromium:v2` (old, 121.0.6167.139-1~deb12u1)
 
 ## forked from
 
